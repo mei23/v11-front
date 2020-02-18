@@ -110,7 +110,7 @@ export default class MiOS extends EventEmitter {
 	@autobind
 	public signout() {
 		this.store.dispatch('logout');
-		location.href = `/${instanceHost}/`;
+		location.href = '/';
 	}
 
 	/**

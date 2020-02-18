@@ -14,8 +14,7 @@ export default define({
 	i18n: i18n(),
 	methods: {
 		customize(date) {
-			// なんか普通に config 読み込むとエラーで死ぬ
-			location.href = "/" + require("../../../config").instanceHost + "/?customize";
+			location.href = '/?customize';
 		}
 	}
 });

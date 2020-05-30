@@ -200,7 +200,7 @@ export default class MiOS extends EventEmitter {
 			});
 		} else {
 			// Get token from cookie or localStorage
-			const i = localStorage.getItem(`i:${instanceHost}`);
+			const i = localStorage.getItem("i");
 
 			fetchme(i, me => {
 				if (me) {

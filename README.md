@@ -1,7 +1,7 @@
 <a href="https://xn--931a.moe/"><img src="https://github.com/syuilo/misskey/blob/develop/assets/ai-orig.png?raw=true" align="right" height="320px"/></a>
 
 # Misskey v11 Front
-v12インスタンスでもv11インスタンスを
+v12インスタンスでもv11を
 
 https://v11.misskey.io
 

@@ -81,7 +81,8 @@ export default (opts) => ({
 			await this.$root.api(this.pagination.endpoint, {
 				limit: (this.pagination.limit || 10) + 1,
 				...params
-			}).then(x => {
+			}).then(_x => {
+				const x = _x.filter(e => !('_featuredId_' in e || '_prId_' in e));
 				if (x.length == (this.pagination.limit || 10) + 1) {
 					x.pop();
 					this.items = x;

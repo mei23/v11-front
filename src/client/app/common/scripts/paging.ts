@@ -114,7 +114,8 @@ export default (opts) => ({
 					untilId: this.items[this.items.length - 1].id,
 				}),
 				...params
-			}).then(x => {
+			}).then(_x => {
+				const x = _x.filter(e => !('_featuredId_' in e || '_prId_' in e));
 				if (x.length == (this.pagination.limit || 10) + 1) {
 					x.pop();
 					this.items = this.items.concat(x);

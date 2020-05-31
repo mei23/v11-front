@@ -11,10 +11,6 @@
 			throw "パラメータがだめぽ"
 		}
 		const [_, domain, token] = result
-		if (localStorage.getItem("allowed-by-user:" + domain) == null) {
-			document.write("ERROR: このドメインは許可されてません。。。")
-			throw "ドメインがだめぽ"
-		}
 		const appSecret = localStorage.getItem(`appSecret:${domain}`)
 		if (appSecret == null) {
 			document.write("ERROR: 認証情報がブラウザに保存されてませんでした。もう一度やりなおしてください。ごめんね〜")
@@ -34,8 +30,8 @@
 			const hash = sha256.create()
 			hash.update(accessToken)
 			hash.update(appSecret)
-			localStorage.setItem(`i:${domain}`, hash.hex())
-			location.href = `/${domain}/`
+			localStorage.setItem("i", hash.hex())
+			location.href = `/`
 		} catch(e) {
 			document.write("ERROR: なんかしんだ。。。コンソール見てね")
 			console.error(e)

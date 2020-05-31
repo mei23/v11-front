@@ -1,17 +1,33 @@
-<a href="https://xn--931a.moe/"><img src="https://github.com/syuilo/misskey/blob/develop/assets/ai-orig.png?raw=true" align="right" height="320px"/></a>
-
 # Misskey v11 Front
-v12インスタンスでもv11を
+v11 web clients running on v12 instances!
 
+Available on Misskey.io
 https://v11.misskey.io
 
-# How to run
-aqzによるメモ
+## notice
+I'm really sorry.
 
-## ビルド
-Misskeyと同じようにnpm run build
+Originally, the above site was able to connect to each instance, but there were multiple bugs and the number of users in other instances was low, so it became a dedicated client for Misskey.io.
 
-npm run cleanはやってはいけない
+You can easily build it by following the steps below, so please run the client on your own as needed.
 
-## 実行
-built/clientで`php -S`
+
+# How to use
+To run this client, you must have your own domain (even on localhost) and a PHP environment.
+
+## Configuring instances
+Open the `src/client/app/config.ts` and customize the following line to the hostname you want to connect to.
+```
+export const instanceHost = "misskey.io"
+```
+
+## Build
+```
+yarn
+npm run build
+```
+
+**Do not run the `npm run clean`**
+
+## Run
+Copy the contents of `built/client` to a PHP-enabled web server.

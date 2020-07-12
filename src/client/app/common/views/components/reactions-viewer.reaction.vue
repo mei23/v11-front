@@ -9,7 +9,7 @@
 	@mouseleave="onMouseleave"
 	ref="reaction"
 >
-	<mk-reaction-icon :reaction="reaction" ref="icon"/>
+	<mk-reaction-icon :reaction="reaction" :custom-emojis="note.emojis" ref="icon"/>
 	<span>{{ count }}</span>
 </span>
 </template>

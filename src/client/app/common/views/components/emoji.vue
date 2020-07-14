@@ -1,7 +1,7 @@
 <template>
-<img v-if="customEmoji" class="fvgwvorwhxigeolkkrcderjzcawqrscl custom" :class="{ normal: normal }" :src="url" :alt="alt" :title="alt"/>
-<img v-else-if="char && !useOsDefaultEmojis" class="fvgwvorwhxigeolkkrcderjzcawqrscl" :src="url" :alt="alt" :title="alt"/>
-<span v-else-if="char && useOsDefaultEmojis">{{ char }}</span>
+<img v-if="customEmoji" class="mk-emoji custom" :class="{ normal, noStyle }" :src="url" :alt="alt" :title="alt"/>
+<img v-else-if="char && !useOsNativeEmojis" class="mk-emoji" :src="url" :alt="alt" :title="alt"/>
+<span v-else-if="char && useOsNativeEmojis">{{ char }}</span>
 <span v-else>:{{ name }}:</span>
 </template>
 
@@ -25,6 +25,11 @@ export default Vue.extend({
 			required: false,
 			default: false
 		},
+		noStyle: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
 		customEmojis: {
 			required: false,
 			default: () => []
@@ -39,7 +44,8 @@ export default Vue.extend({
 		return {
 			url: null,
 			char: null,
-			customEmoji: null
+			customEmoji: null,
+			ce: []
 		}
 	},
 
@@ -48,40 +54,35 @@ export default Vue.extend({
 			return this.customEmoji ? `:${this.customEmoji.name}:` : this.char;
 		},
 
-		useOsDefaultEmojis(): boolean {
+		useOsNativeEmojis(): boolean {
 			return this.$store.state.device.useOsDefaultEmojis && !this.isReaction;
-		}
+		},
 	},
 
 	watch: {
-		customEmojis() {
-			if (this.name) {
-				const customEmoji = this.customEmojis.find(x => x.name == this.name);
-				if (customEmoji) {
-					this.customEmoji = customEmoji;
-					this.url = this.$store.state.device.disableShowingAnimatedImages
-						? getStaticImageUrl(customEmoji.url)
-						: customEmoji.url;
+		ce: {
+			handler() {
+				if (this.name) {
+					const customEmoji = this.ce.find(x => x.name == this.name);
+					if (customEmoji) {
+						this.customEmoji = customEmoji;
+						this.url = this.$store.state.device.disableShowingAnimatedImages
+							? getStaticImageUrl(customEmoji.url)
+							: customEmoji.url;
+					}
 				}
-			}
+			},
+			immediate: true
 		},
 	},
 
 	created() {
-		if (this.name) {
-			const customEmoji = this.customEmojis.find(x => x.name == this.name);
-			if (customEmoji) {
-				this.customEmoji = customEmoji;
-				this.url = this.$store.state.device.disableShowingAnimatedImages
-					? getStaticImageUrl(customEmoji.url)
-					: customEmoji.url;
-			} else {
-				//const emoji = lib[this.name];
-				//if (emoji) {
-				//	this.char = emoji.char;
-				//}
-			}
-		} else {
+		if (this.customEmojis) this.ce = this.ce.concat(this.customEmojis);
+		this.$root.getMeta().then(meta => {
+			if (meta && meta.emojis) this.ce = this.ce.concat(meta.emojis);
+		});
+
+		if (!this.name) {
 			this.char = this.emoji;
 		}
 
@@ -97,7 +98,7 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-.fvgwvorwhxigeolkkrcderjzcawqrscl
+.mk-emoji
 	height 1.25em
 	vertical-align -0.25em
 
@@ -116,4 +117,6 @@ export default Vue.extend({
 			&:hover
 				transform none
 
+	&.noStyle
+		height: auto !important;
 </style>

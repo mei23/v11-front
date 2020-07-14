@@ -6,7 +6,7 @@
 		<div class="buttons" ref="buttons" :class="{ showFocus }">
 			<button v-for="(reaction, i) in rs" :key="reaction" @click="react(reaction)" @mouseover="onMouseover" @mouseout="onMouseout" :tabindex="i + 1" :title="/^[a-z]+$/.test(reaction) ? $t('@.reactions.' + reaction) : reaction" v-particle><mk-reaction-icon :reaction="reaction"/></button>
 		</div>
-		<div v-if="enableEmojiReaction" class="text">
+		<div class="text">
 			<input v-model="text" :placeholder="$t('input-reaction-placeholder')" @keyup.enter="reactText" @input="tryReactText" v-autocomplete="{ model: 'text' }">
 		</div>
 	</div>
@@ -48,7 +48,6 @@ export default Vue.extend({
 			rs: this.reactions || this.$store.state.settings.reactions,
 			title: this.$t('choose-reaction'),
 			text: null,
-			enableEmojiReaction: false,
 			focus: null
 		};
 	},
@@ -87,10 +86,6 @@ export default Vue.extend({
 	},
 
 	mounted() {
-		this.$root.getMeta().then(meta => {
-			this.enableEmojiReaction = meta.enableEmojiReaction;
-		});
-
 		this.$nextTick(() => {
 			this.focus = 0;
 

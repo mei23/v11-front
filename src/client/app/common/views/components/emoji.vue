@@ -45,7 +45,6 @@ export default Vue.extend({
 			url: null,
 			char: null,
 			customEmoji: null,
-			ce: []
 		}
 	},
 
@@ -59,27 +58,21 @@ export default Vue.extend({
 		},
 	},
 
-	watch: {
-		ce: {
-			handler() {
-				if (this.name) {
-					const customEmoji = this.ce.find(x => x.name == this.name);
-					if (customEmoji) {
-						this.customEmoji = customEmoji;
-						this.url = this.$store.state.device.disableShowingAnimatedImages
-							? getStaticImageUrl(customEmoji.url)
-							: customEmoji.url;
-					}
-				}
-			},
-			immediate: true
-		},
-	},
-
 	created() {
-		if (this.customEmojis) this.ce = this.ce.concat(this.customEmojis);
 		this.$root.getMeta().then(meta => {
-			if (meta && meta.emojis) this.ce = this.ce.concat(meta.emojis);
+			let ce = [];
+			if (this.customEmojis) ce = ce.concat(this.customEmojis);
+			if (meta && meta.emojis) ce = ce.concat(meta.emojis);
+
+			if (this.name) {
+				const customEmoji = ce.find(x => x.name == this.name);
+				if (customEmoji) {
+					this.customEmoji = customEmoji;
+					this.url = this.$store.state.device.disableShowingAnimatedImages
+						? getStaticImageUrl(customEmoji.url)
+						: customEmoji.url;
+				}
+			}
 		});
 
 		if (!this.name) {

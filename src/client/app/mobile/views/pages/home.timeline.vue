@@ -25,6 +25,9 @@ export default Vue.extend({
 		},
 		tagTl: {
 			required: false
+		},
+		antenna: {
+			required: false
 		}
 	},
 
@@ -106,6 +109,13 @@ export default Vue.extend({
 			};
 			this.connection = this.$root.stream.useSharedConnection('main');
 			this.connection.on('mention', onNote);
+		} else if (this.src == 'antenna') {
+			this.endpoint = 'antennas/notes';
+			this.query = {
+				antennaId: this.antenna.id
+			};
+			this.connection = this.$root.stream.connectToChannel('antenna', { antennaId: this.antenna.id });
+			this.connection.on('note', prepend);
 		}
 
 		this.pagination = {

@@ -1267,9 +1267,12 @@ desktop/views/components/timeline.vue:
   messages: "ダイレクト投稿"
   list: "リスト"
   hashtag: "ハッシュタグ"
+  antenna: "アンテナ"
   add-tag-timeline: "ハッシュタグを追加"
   add-list: "リストを追加"
+  add-antenna: "アンテナを追加"
   list-name: "リスト名"
+  antenna-name: "リスト名"
 
 desktop/views/components/ui.header.vue:
   welcome-back: "おかえりなさい、"

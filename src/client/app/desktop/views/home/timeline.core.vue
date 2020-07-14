@@ -68,6 +68,13 @@ export default Vue.extend({
 			};
 			this.connection = this.$root.stream.connectToChannel('hashtag', { q: this.tagTl.query });
 			this.connection.on('note', prepend);
+		} else if (this.src == 'antenna') {
+			this.endpoint = 'antennas/notes';
+			this.query = {
+				antennaId: this.antenna.id
+			};
+			this.connection = this.$root.stream.connectToChannel('antenna', { antennaId: this.antenna.id });
+			this.connection.on('note', prepend);
 		} else if (this.src == 'home') {
 			this.endpoint = 'notes/timeline';
 			const onChangeFollowing = () => {

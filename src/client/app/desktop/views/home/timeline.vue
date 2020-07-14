@@ -10,11 +10,13 @@
 				<div :data-active="src == 'global'" @click="src = 'global'" v-if="enableGlobalTimeline"><fa icon="globe"/> {{ $t('global') }}</div>
 				<div :data-active="src == 'tag'" @click="src = 'tag'" v-if="tagTl"><fa icon="hashtag"/> {{ tagTl.title }}</div>
 				<div :data-active="src == 'list'" @click="src = 'list'" v-if="list"><fa icon="list"/> {{ list.name }}</div>
+				<div :data-active="src == 'antenna'" @click="src = 'antenna'" v-if="antenna"><fa icon="satellite"/> {{ antenna.name }}</div>
 				<div class="buttons">
 					<button :data-active="src == 'mentions'" @click="src = 'mentions'" :title="$t('mentions')"><fa icon="at"/><i class="indicator" v-if="$store.state.i.hasUnreadMentions"><fa icon="circle"/></i></button>
 					<button :data-active="src == 'messages'" @click="src = 'messages'" :title="$t('messages')"><fa :icon="['far', 'envelope']"/><i class="indicator" v-if="$store.state.i.hasUnreadSpecifiedNotes"><fa icon="circle"/></i></button>
 					<button @click="chooseTag" :title="$t('hashtag')" ref="tagButton"><fa icon="hashtag"/></button>
 					<button @click="chooseList" :title="$t('list')" ref="listButton"><fa icon="list"/></button>
+					<button @click="chooseAntenna" :title="$t('antenna')" ref="antennaButton"><fa icon="satellite"/></button>
 				</div>
 			</header>
 		</component>
@@ -28,6 +30,7 @@ import i18n from '../../../i18n';
 import XCore from './timeline.core.vue';
 import Menu from '../../../common/views/components/menu.vue';
 import MkSettingsWindow from '../components/settings-window.vue';
+import { instanceHost } from '../../../config'
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/timeline.vue'),
@@ -42,6 +45,7 @@ export default Vue.extend({
 			src: 'home',
 			list: null,
 			tagTl: null,
+			antenna: null,
 			enableLocalTimeline: false,
 			enableGlobalTimeline: false,
 		};
@@ -51,6 +55,7 @@ export default Vue.extend({
 		options(): any {
 			return {
 				...(this.src == 'list' ? { list: this.list } : { src: this.src }),
+				...(this.src == 'antenna' ? { antenna: this.antenna } : {}),
 				...(this.src == 'tag' ? { tagTl: this.tagTl } : {}),
 				key: this.src == 'list' ? this.list.id : this.src
 			}
@@ -65,6 +70,11 @@ export default Vue.extend({
 		list(x) {
 			this.saveSrc();
 			if (x != null) this.tagTl = null;
+		},
+
+		antenna(x) {
+			this.saveSrc();
+			if (x != null) this.antenna = null;
 		},
 
 		tagTl(x) {
@@ -89,6 +99,8 @@ export default Vue.extend({
 				this.list = this.$store.state.device.tl.arg;
 			} else if (this.src == 'tag') {
 				this.tagTl = this.$store.state.device.tl.arg;
+			} else if (this.src == 'antenna') {
+				this.antenna = this.$store.state.device.tl.arg;
 			}
 		}
 	},
@@ -105,7 +117,7 @@ export default Vue.extend({
 		saveSrc() {
 			this.$store.commit('device/setTl', {
 				src: this.src,
-				arg: this.src == 'list' ? this.list : this.tagTl
+				arg: this.src == 'list' ? this.list : this.src == 'antenna' ? this.antenna : this.tagTl
 			});
 		},
 
@@ -154,6 +166,36 @@ export default Vue.extend({
 
 			this.$root.new(Menu, {
 				source: this.$refs.listButton,
+				items: menu
+			});
+		},
+
+		async chooseAntenna() {
+			const antennas = await this.$root.api('antennas/list');
+
+			let menu = [{
+				icon: 'plus',
+				text: this.$t('add-antenna'),
+				action: () => {
+					window.open(`https://${instanceHost}/my/antennas`);
+				}
+			}];
+
+			if (antennas.length > 0) {
+				menu.push(null);
+			}
+
+			menu = menu.concat(antennas.map(antenna => ({
+				icon: 'satellite',
+				text: antenna.name,
+				action: () => {
+					this.antenna = antenna;
+					this.src = 'antenna';
+				}
+			})));
+
+			this.$root.new(Menu, {
+				source: this.$refs.antennaButton,
 				items: menu
 			});
 		},

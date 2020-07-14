@@ -26,6 +26,9 @@ export default Vue.extend({
 		},
 		tagTl: {
 			required: false
+		},
+		antenna: {
+			required: false
 		}
 	},
 

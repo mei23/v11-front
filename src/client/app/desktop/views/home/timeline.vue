@@ -69,17 +69,26 @@ export default Vue.extend({
 
 		list(x) {
 			this.saveSrc();
-			if (x != null) this.tagTl = null;
+			if (x != null) {
+				this.antenna = null;
+				this.tagTl = null;
+			}
 		},
 
 		antenna(x) {
 			this.saveSrc();
-			if (x != null) this.antenna = null;
+			if (x != null) {
+				this.list = null;
+				this.tagTl = null;
+			}
 		},
 
 		tagTl(x) {
 			this.saveSrc();
-			if (x != null) this.list = null;
+			if (x != null) {
+				this.list = null;
+				this.antenna = null;
+			}
 		}
 	},
 

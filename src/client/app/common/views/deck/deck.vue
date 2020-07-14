@@ -204,6 +204,28 @@ export default Vue.extend({
 						});
 					}
 				}, {
+					icon: 'satellite',
+					text: this.$t('@deck.antenna'),
+					action: async () => {
+						const antennas = await this.$root.api('antennas/list');
+						const { canceled, result: antennaId } = await this.$root.dialog({
+							type: null,
+							title: this.$t('@deck.select-an-antenna'),
+							select: {
+								items: antennas.map(antenna => ({
+									value: antenna.id, text: antenna.name
+								}))
+							},
+							showCancelButton: true
+						});
+						if (canceled) return;
+						this.$store.commit('addDeckColumn', {
+							id: uuid(),
+							type: 'antenna',
+							antenna: antennas.find(l => l.id === antennaId)
+						});
+					}
+				}, {
 					icon: 'hashtag',
 					text: this.$t('@deck.hashtag'),
 					action: () => {

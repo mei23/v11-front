@@ -26,6 +26,9 @@ export default Vue.extend({
 		},
 		tagTl: {
 			required: false
+		},
+		antenna: {
+			required: false
 		}
 	},
 
@@ -67,6 +70,13 @@ export default Vue.extend({
 				query: this.tagTl.query
 			};
 			this.connection = this.$root.stream.connectToChannel('hashtag', { q: this.tagTl.query });
+			this.connection.on('note', prepend);
+		} else if (this.src == 'antenna') {
+			this.endpoint = 'antennas/notes';
+			this.query = {
+				antennaId: this.antenna.id
+			};
+			this.connection = this.$root.stream.connectToChannel('antenna', { antennaId: this.antenna.id });
 			this.connection.on('note', prepend);
 		} else if (this.src == 'home') {
 			this.endpoint = 'notes/timeline';

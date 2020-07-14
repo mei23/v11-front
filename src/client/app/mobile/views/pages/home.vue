@@ -10,6 +10,7 @@
 				<span v-if="src == 'mentions'"><fa icon="at"/>{{ $t('mentions') }}</span>
 				<span v-if="src == 'messages'"><fa :icon="['far', 'envelope']"/>{{ $t('messages') }}</span>
 				<span v-if="src == 'list'"><fa icon="list"/>{{ list.name }}</span>
+				<span v-if="src == 'antenna'"><fa icon="satellite"/>{{ antenna.name }}</span>
 				<span v-if="src == 'tag'"><fa icon="hashtag"/>{{ tagTl.title }}</span>
 			</span>
 			<span style="margin-left:8px">
@@ -41,6 +42,10 @@
 						<div class="hr" v-if="lists.length > 0"></div>
 						<span v-for="l in lists" :data-active="src == 'list' && list == l" @click="src = 'list'; list = l" :key="l.id"><fa icon="list"/> {{ l.name }}</span>
 					</template>
+					<template v-if="antennas">
+						<div class="hr" v-if="antennas.length > 0"></div>
+						<span v-for="a in antennas" :data-active="src == 'antenna' && antenna == a" @click="src = 'antenna'; antenna = a" :key="a.id"><fa icon="satellite"/> {{ a.name }}</span>
+					</template>
 					<div class="hr" v-if="$store.state.settings.tagTimelines && $store.state.settings.tagTimelines.length > 0"></div>
 					<span v-for="tl in $store.state.settings.tagTimelines" :data-active="src == 'tag' && tagTl == tl" @click="src = 'tag'; tagTl = tl" :key="tl.id"><fa icon="hashtag"/> {{ tl.title }}</span>
 				</div>
@@ -54,6 +59,7 @@
 			<x-tl v-if="src == 'global'" ref="tl" key="global" src="global"/>
 			<x-tl v-if="src == 'mentions'" ref="tl" key="mentions" src="mentions"/>
 			<x-tl v-if="src == 'messages'" ref="tl" key="messages" src="messages"/>
+			<x-tl v-if="src == 'antenna'" ref="tl" key="antenna" src="antenna" :antenna="antenna"/>
 			<x-tl v-if="src == 'tag'" ref="tl" key="tag" src="tag" :tag-tl="tagTl"/>
 			<mk-user-list-timeline v-if="src == 'list'" ref="tl" :key="list.id" :list="list"/>
 		</div>
@@ -79,6 +85,8 @@ export default Vue.extend({
 			src: 'home',
 			list: null,
 			lists: null,
+			antenna: null,
+			antennas: null,
 			tagTl: null,
 			showNav: false,
 			enableLocalTimeline: false,
@@ -110,6 +118,11 @@ export default Vue.extend({
 					this.lists = lists;
 				});
 			}
+			if (v && this.antennas === null) {
+				this.$root.api('antennas/list').then(antennas => {
+					this.antennas = antennas;
+				});
+			}
 		}
 	},
 
@@ -129,6 +142,8 @@ export default Vue.extend({
 				this.list = this.$store.state.device.tl.arg;
 			} else if (this.src == 'tag') {
 				this.tagTl = this.$store.state.device.tl.arg;
+			} else if (this.src == 'antenna') {
+				this.antenna = this.$store.state.device.tl.arg;
 			}
 		}
 	},
@@ -151,7 +166,7 @@ export default Vue.extend({
 		saveSrc() {
 			this.$store.commit('device/setTl', {
 				src: this.src,
-				arg: this.src == 'list' ? this.list : this.tagTl
+				arg: this.src == 'list' ? this.list : this.src == 'antenna' ? this.antenna : this.tagTl
 			});
 		},
 

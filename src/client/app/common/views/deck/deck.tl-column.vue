@@ -6,6 +6,7 @@
 		<fa v-if="column.type == 'hybrid'" icon="share-alt"/>
 		<fa v-if="column.type == 'global'" icon="globe"/>
 		<fa v-if="column.type == 'list'" icon="list"/>
+		<fa v-if="column.type == 'antenna'" icon="satellite"/>
 		<fa v-if="column.type == 'hashtag'" icon="hashtag"/>
 		<span>{{ name }}</span>
 	</template>
@@ -16,6 +17,11 @@
 
 	<x-list-tl v-if="column.type == 'list'"
 		:list="column.list"
+		:media-only="column.isMediaOnly"
+		ref="tl"
+	/>
+	<x-antenna-tl v-else-if="column.type == 'antenna'"
+		:antenna="column.antenna"
 		:media-only="column.isMediaOnly"
 		ref="tl"
 	/>
@@ -38,6 +44,7 @@ import i18n from '../../../i18n';
 import XColumn from './deck.column.vue';
 import XTl from './deck.tl.vue';
 import XListTl from './deck.list-tl.vue';
+import XAntennaTl from './deck.antenna-tl.vue';
 import XHashtagTl from './deck.hashtag-tl.vue';
 
 export default Vue.extend({
@@ -46,6 +53,7 @@ export default Vue.extend({
 		XColumn,
 		XTl,
 		XListTl,
+		XAntennaTl,
 		XHashtagTl
 	},
 
@@ -83,7 +91,9 @@ export default Vue.extend({
 				case 'hybrid': return this.$t('@deck.hybrid');
 				case 'global': return this.$t('@deck.global');
 				case 'list': return this.column.list.name;
+				case 'antenna': return this.column.antenna.name;
 				case 'hashtag': return this.$store.state.settings.tagTimelines.find(x => x.id == this.column.tagTlId).title;
+				default: return '';
 			}
 		}
 	},

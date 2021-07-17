@@ -78,7 +78,7 @@
 		"@types/random-seed": "0.3.3",
 		"@types/ratelimiter": "2.1.28",
 		"@types/redis": "2.8.14",
-		"@types/rename": "1.0.1",
+		"@types/rename": "1.0.4",
 		"@types/request": "2.48.4",
 		"@types/request-promise-native": "1.0.18",
 		"@types/request-stats": "3.0.0",

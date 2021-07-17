@@ -18,7 +18,7 @@ npm run build
 ## Deploy
 Copy the contents of `built/client` to the root of your web server. 
 
-PHPは別にいらない。PHPは開発サーバーを動かすためだけにある。`index.php`はDeploy時に消しちゃってOK。  
+PHPは別にいらない。PHPは開発サーバーを動かすためにある。`index.php`はDeploy時に消しちゃってOK。  
 存在しないファイルにアクセスされたら`/app.html`を返す必要があるので、Rewriteなりでどうにかする。
 
 nginx

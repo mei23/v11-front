@@ -83,7 +83,7 @@ gulp.task('mocha', () =>
 gulp.task('test', gulp.task('mocha'));
 
 gulp.task('clean', cb =>
-	rimraf('./built', cb)
+	rimraf('./built/client/assets', cb)
 );
 
 gulp.task('cleanall', gulp.parallel('clean', cb =>

@@ -220,7 +220,7 @@
 		"terser-webpack-plugin": "4.2.3",
 		"textarea-caret": "3.1.0",
 		"three": "0.112.1",
-		"tinycolor2": "1.4.1",
+		"tinycolor2": "1.4.2",
 		"tmp": "0.1.0",
 		"ts-loader": "6.2.1",
 		"ts-node": "8.5.4",

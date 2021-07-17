@@ -320,14 +320,14 @@
   dependencies:
     "@types/node" "*"
 
-"@types/gulp@4.0.6":
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/@types/gulp/-/gulp-4.0.6.tgz#68fe0e1f0ff3657cfca46fb564806b744a1bf899"
-  integrity sha512-0E8/iV/7FKWyQWSmi7jnUvgXXgaw+pfAzEB06Xu+l0iXVJppLbpOye5z7E2klw5akXd+8kPtYuk65YBcZPM4ow==
+"@types/gulp@4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/gulp/-/gulp-4.0.9.tgz#a2f9667bcc26bc72b4899dd16216d6584a12346c"
+  integrity sha512-zzT+wfQ8uwoXjDhRK9Zkmmk09/fbLLmN/yDHFizJiEKIve85qutOnXcP/TM2sKPBTU+Jc16vfPbOMkORMUBN7Q==
   dependencies:
     "@types/undertaker" "*"
     "@types/vinyl-fs" "*"
-    chokidar "^2.1.2"
+    chokidar "^3.3.1"
 
 "@types/http-assert@*":
   version "1.5.1"
@@ -2222,7 +2222,7 @@ chokidar@3.3.0:
   optionalDependencies:
     fsevents "~2.1.1"
 
-chokidar@^2.0.0, chokidar@^2.1.2, chokidar@^2.1.8:
+chokidar@^2.0.0, chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
   integrity sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg==
@@ -2241,7 +2241,7 @@ chokidar@^2.0.0, chokidar@^2.1.2, chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.4.1:
+chokidar@^3.3.1, chokidar@^3.4.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
   integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==

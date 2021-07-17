@@ -612,12 +612,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rename@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@types/rename/-/rename-1.0.1.tgz#89ef152d73f2400835c5d835c5e22d3eb6b21ba6"
-  integrity sha512-/UCzEibV29OoEkc773GR9lzwrHnMl8wnNrvAir+WIICS4e7NG+Pe85pYH4CGyVvgmNuKiiWH5i0g0flHO/Uw4Q==
-  dependencies:
-    "@types/node" "*"
+"@types/rename@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/rename/-/rename-1.0.4.tgz#30c6f0306042591a560361ea02639e89647dd173"
+  integrity sha512-eV81+6bVv2mdCBahkMefjEUwAjKDAP3AuyhqWCWRxcRaeVdUeHUBaoq2zSz+5HNHF2jzTajMcfLvJsy4K3cbwA==
 
 "@types/request-promise-native@1.0.18":
   version "1.0.18"

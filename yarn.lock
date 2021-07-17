@@ -324,12 +324,13 @@
     "@types/mocha" "*"
     "@types/node" "*"
 
-"@types/gulp-rename@0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@types/gulp-rename/-/gulp-rename-0.0.33.tgz#38d146e97786569f74f5391a1b1f9b5198674b6c"
-  integrity sha512-FIZQvbZJj6V1gHPTzO+g/BCWpDur7fJrroae4gwV3LaoHBQ+MrR9sB+2HssK8fHv4WdY6hVNxkcft9bYatuPIA==
+"@types/gulp-rename@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/gulp-rename/-/gulp-rename-2.0.1.tgz#c8228fc2c5c4a7500346ea9ce18f27fa988caef5"
+  integrity sha512-9ZjeS2RHEnmBmTcyi2+oeye3BgCsWhvi4uv3qCnAg8i6plOuRdaeNxjOves0ELysEXYLBl7bCl5fbVs7AZtgTA==
   dependencies:
     "@types/node" "*"
+    "@types/vinyl" "*"
 
 "@types/gulp-replace@0.0.31":
   version "0.0.31"
@@ -527,12 +528,7 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
   integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
 
-"@types/node@*":
-  version "12.7.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.12.tgz#7c6c571cc2f3f3ac4a59a5f2bd48f5bdbc8653cc"
-  integrity sha512-KPYGmfD0/b1eXurQ59fXD1GBzhSQfz6/lKBxkaHX9dKTzjXbK68Zt7yGUxUsCS1jeTy/8aL+d9JEr+S54mpkWQ==
-
-"@types/node@13.1.4":
+"@types/node@*", "@types/node@13.1.4":
   version "13.1.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.4.tgz#4cfd90175a200ee9b02bd6b1cd19bc349741607e"
   integrity sha512-Lue/mlp2egZJoHXZr4LndxDAd7i/7SQYhV0EjWfb/a4/OZ6tuVwMCVPiwkU5nsEipxEf7hmkSU7Em5VQ8P5NGA==

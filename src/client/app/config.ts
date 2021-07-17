@@ -6,11 +6,11 @@ declare const _ENV_: string;
 
 const address = new URL(location.href);
 
-export const instanceHost = "misskey.io"
+export const instanceHost = 'example.com';
 
 export const host = address.host;
 export const hostname = address.hostname;
-export const url = address.origin+"/";
+export const url = address.origin + '/';
 export const apiUrl = `https://${instanceHost}/api`;
 export const wsUrl = `wss://${instanceHost}/streaming`;
 export const lang = localStorage.getItem('lang') || window.lang; // windowは後方互換性のため

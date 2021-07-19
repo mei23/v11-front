@@ -67,7 +67,7 @@
 		"@types/lolex": "5.1.0",
 		"@types/mocha": "5.2.7",
 		"@types/node": "13.1.4",
-		"@types/nodemailer": "6.4.0",
+		"@types/nodemailer": "6.4.4",
 		"@types/nprogress": "0.2.0",
 		"@types/oauth": "0.9.1",
 		"@types/parse5": "5.0.2",

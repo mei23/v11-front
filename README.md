@@ -1,7 +1,7 @@
 # Misskey v11 Front
 See  
 https://github.com/RinShibuya/misskey-v11-front  
-https://github.com/MisskeyIO/misskey/tree/v11-front
+github.com/MisskeyIO/misskey/tree/v11-front
 
 ## Configuring instances
 Open the `src/client/app/config.ts` and customize the following line to the hostname you want to connect to.

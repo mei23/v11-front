@@ -5773,10 +5773,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jsrsasign@8.0.12:
-  version "8.0.12"
-  resolved "https://registry.yarnpkg.com/jsrsasign/-/jsrsasign-8.0.12.tgz#22abb9656d34a30b9530436720835e89c2e5c316"
-  integrity sha1-Iqu5ZW00owuVMENnIINeicLlwxY=
+jsrsasign@10.5.6:
+  version "10.5.6"
+  resolved "https://registry.yarnpkg.com/jsrsasign/-/jsrsasign-10.5.6.tgz#fe2d330e0f020cc1a04967ff67ff6d79a93a4cf7"
+  integrity sha512-B9v/4K8V42R13aDWhe2yg4J3fqvzE4uPT0UivW/2G119RT6H1diLhysqEhFMPV0cg22rZR25q/O6sKwtnjj81Q==
 
 jstransformer@1.0.0:
   version "1.0.0"
